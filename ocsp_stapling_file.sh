@@ -52,7 +52,7 @@ case $version in
         ;;
     'OpenSSL 1.1.0'|'OpenSSL 1.1.1') header="Host=${ocsp_url_host}"
         ;;
-    *) echo $version" 该版本尚未测试，所以不支持，详情查看项目主页：https://github.com/practicemp/ocsp"; exit
+    *) echo $version" 抱歉，该版本尚未测试，所以不支持，详情查看项目主页：https://github.com/practicemp/ocsp"; exit 1
         ;;
 esac
 
