@@ -48,7 +48,7 @@ version_info=`openssl version`
 version=${version_info:0:13}
 
 case $version in
-    'OpenssL 1.0.2') header="Host ${ocsp_url_host}"
+    'OpenSSL 1.0.2') header="Host ${ocsp_url_host}"
         ;;
     'OpenSSL 1.1.0'|'OpenSSL 1.1.1') header="Host=${ocsp_url_host}"
         ;;
