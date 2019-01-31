@@ -12,6 +12,8 @@ $ chmod +x ocsp/ocsp_stapling_file.sh
 ```shell
 $ sudo ocsp/ocsp_stapling_file.sh 证书域名 响应文件的路径 最大重试次数[可选，默认为0]
 $ sudo ocsp/ocsp_stapling_file.sh example.com /path/to/ssl_stapling_file.der 3
+# 结合重载 Nginx 配置
+$ sudo ocsp/ocsp_stapling_file.sh example.com /path/to/ssl_stapling_file.der 3 && sudo nginx -s reload
 ```
 
 该脚本可接受 3 个参数：

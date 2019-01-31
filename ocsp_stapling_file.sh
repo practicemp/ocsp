@@ -72,7 +72,7 @@ do
         else 
 #            echo "新响应内容无变化"
 #            echo "$ocsp_resp"
-            exit
+            exit 1
         fi
     fi
     let "retry++"
