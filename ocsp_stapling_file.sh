@@ -23,8 +23,12 @@ nonexistentFile(){
     if [[ ! -e $1 || ! -r $1 ]]; then echo $1 "不存在或不可读"; exit 1; fi
 }
 
-testDir(){
-    if [[ ! -e $1 || ! -d $1 || ! -r $1 || ! -w $1 || ! -x $1 ]]; then echo $1 "无效的目录"; exit 1; fi
+sslDir(){
+    if [[ ! -e $1 || ! -d $1 || ! -r $1 || ! -x $1 ]]; then echo $1 "无效的目录，请检查是否存在，或者是否有rx权限"; exit 1; fi
+}
+
+ocspDir(){
+    if [[ ! -e $1 || ! -d $1 || ! -r $1 || ! -w $1 || ! -x $1 ]]; then echo $1 "无效的目录，请检查是否存在，或者是否有rwx权限"; exit 1; fi
 }
 
 validNumber(){
@@ -50,7 +54,7 @@ do
             ssl_dir=$OPTARG
             ;;
         o)
-            nonexistentFile "$OPTARG"
+            ocspDir $(dirname "$OPTARG")
             ocsp_resp_file=$OPTARG
             ;;
         t)
@@ -69,22 +73,10 @@ do
 done
 
 
-
 emptyString "$ssl_dir" "证书所在目录参数未输入"
 
 emptyString "$ocsp_resp_file" "OCSP 响应文件路径参数未输入"
 
-# if [ -z $3 ]; then
-#     retryMax=0
-# else
-#     expr $3 + 6 &>/dev/null
-#     if [[ $? -eq 0 && $3 -ge 0 ]]; then
-#         retryMax=$3
-#     else
-#         echo "最大重试次数应为非负整数，请重新输入"
-#         exit 1
-#     fi
-# fi
 
 if [[ $verbose -eq 1 ]]; then
     echo "证书所在目录为：$ssl_dir"
@@ -125,7 +117,7 @@ do
         diff $ocsp_resp_temp_file $ocsp_resp_file >/dev/null 2>&1
         if [ $? != 0 ]; then
             cat $ocsp_resp_temp_file > $ocsp_resp_file
-#            rm -f $ocsp_resp_temp_file
+            # rm -f $ocsp_resp_temp_file
             if [[ $verbose -eq 1 ]]; then
             echo "响应文件已更新："
             echo "$ocsp_resp"
