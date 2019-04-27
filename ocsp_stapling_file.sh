@@ -61,6 +61,7 @@ do
             verbose=1
             ;;
         \?)
+            echo "存在未知选项，请检查"
             usage
             exit 1
             ;;
@@ -69,11 +70,9 @@ done
 
 
 
-# emptyString "$1" "证书域名参数未输入"
-# domain=$1
+emptyString "$ssl_dir" "证书所在目录参数未输入"
 
-# emptyString "$2" "OCSP 响应文件路径参数未输入"
-# ocsp_resp_file=$2
+emptyString "$ocsp_resp_file" "OCSP 响应文件路径参数未输入"
 
 # if [ -z $3 ]; then
 #     retryMax=0
@@ -128,13 +127,13 @@ do
             cat $ocsp_resp_temp_file > $ocsp_resp_file
 #            rm -f $ocsp_resp_temp_file
             if [[ $verbose -eq 1 ]]; then
-            echo "响应文件已更新"
+            echo "响应文件已更新："
             echo "$ocsp_resp"
             fi
             exit
         else
             if [[ $verbose -eq 1 ]]; then
-            echo "新响应内容无变化"
+            echo "新响应内容无变化："
             echo "$ocsp_resp"
             fi
             exit 1
