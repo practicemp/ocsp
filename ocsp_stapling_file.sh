@@ -38,7 +38,7 @@ validNumber(){
 
 retryMax=0
 
-while getopts ":hd:o:t:v" opt
+while getopts ":d:o:t:vh" opt
 do
     case $opt in
         h)
@@ -87,7 +87,7 @@ done
 #     fi
 # fi
 
-if [[ $verbose == 1 ]]; then
+if [[ $verbose -eq 1 ]]; then
     echo "证书所在目录为：$ssl_dir"
     echo "OCSP 响应文件为：$ocsp_resp_file"
     echo "最大重试次数为：$retryMax"
@@ -127,13 +127,13 @@ do
         if [ $? != 0 ]; then
             cat $ocsp_resp_temp_file > $ocsp_resp_file
 #            rm -f $ocsp_resp_temp_file
-            if [ $verbose == 1 ]; then
+            if [[ $verbose -eq 1 ]]; then
             echo "响应文件已更新"
             echo "$ocsp_resp"
             fi
             exit
         else
-            if [ $verbose == 1 ]; then
+            if [[ $verbose -eq 1 ]]; then
             echo "新响应内容无变化"
             echo "$ocsp_resp"
             fi
