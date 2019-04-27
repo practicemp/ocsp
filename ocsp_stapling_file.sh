@@ -38,7 +38,7 @@ validNumber(){
 
 retryMax=0
 
-while getopts ":d:D:t:v" opt
+while getopts ":h:d:o:t:v" opt
 do
     case $opt in
         h)
