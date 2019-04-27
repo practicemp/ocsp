@@ -5,11 +5,11 @@
 # 用法请查看上面的项目主页。
 
 usage(){
-    echo "-h   输出帮助信息"
-    echo "-d   网站证书(cert.pem)及中间证书(chain.pem)所在目录"
-    echo "-o   OCSP 响应文件"
-    echo "-t   重试次数"
-    echo "-v   输出详细信息"
+    echo "-h   输出此帮助信息。"
+    echo "-d   设置网站证书(cert.pem)及中间证书(chain.pem)所在目录。"
+    echo "-o   设置 OCSP 响应文件路径。如果不存在会自动创建。"
+    echo "-t   设置访问 OCSP 服务器的最大重试次数。"
+    echo "-v   输出详细信息。"
 }
 
 
@@ -28,7 +28,7 @@ sslDir(){
 }
 
 ocspDir(){
-    if [[ ! -e $1 || ! -d $1 || ! -r $1 || ! -w $1 || ! -x $1 ]]; then echo $1 "无效的目录，请检查是否存在，或者是否有rwx权限"; exit 1; fi
+    if [[ ! -e $1 || ! -d $1 || ! -r $1 || ! -w $1 || ! -x $1 ]]; then echo $1 "OCSP 响应文件所在的目录无效，请检查是否存在，或者是否有rwx权限"; exit 1; fi
 }
 
 validNumber(){
