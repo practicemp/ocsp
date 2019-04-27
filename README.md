@@ -9,16 +9,16 @@ $ git clone https://github.com/practicemp/ocsp.git
 示例：
 
 ```shell
-$ sudo ocsp/ocsp_stapling_file.sh -d [证书所在目录] -o [响应文件的路径] -t [最大重试次数，默认为0]
-$ sudo ocsp/ocsp_stapling_file.sh \
+$ sudo ocsp/ocsp.sh -d [证书所在目录] -o [响应文件的路径] -t [最大重试次数，默认为0]
+$ sudo ocsp/ocsp.sh \
 -d /etc/local/nginx/ssl \
--o /etc/local/nginx/ocsp/ssl_stapling_file.der \
+-o /etc/local/nginx/ocsp/ocsp_resp.der \
 -t 3 \
 -v
 # 结合重载 Nginx 配置
-$ sudo ocsp/ocsp_stapling_file.sh \
+$ sudo ocsp/ocsp.sh \
 -d /etc/local/nginx/ssl \
--o /etc/local/nginx/to/ssl_stapling_file.der \
+-o /etc/local/nginx/ocsp/ocsp_resp.der \
 -t 3 \
 -v && sudo nginx -s reload
 ```
