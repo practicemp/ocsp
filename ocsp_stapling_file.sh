@@ -50,7 +50,7 @@ do
             exit
             ;;
         d)
-            testDir "$OPTARG"
+            sslDir "$OPTARG"
             ssl_dir=$OPTARG
             ;;
         o)
