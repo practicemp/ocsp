@@ -38,7 +38,7 @@ validNumber(){
 
 retryMax=0
 
-while getopts ":h:d:o:t:v" opt
+while getopts ":hd:o:t:v" opt
 do
     case $opt in
         h)
@@ -86,6 +86,12 @@ done
 #         exit 1
 #     fi
 # fi
+
+if [[ $verbose == 1 ]]; then
+    echo "证书所在目录为：$ssl_dir"
+    echo "OCSP 响应文件为：$ocsp_resp_file"
+    echo "最大重试次数为：$retryMax"
+fi
 
 cert="$ssl_dir/cert.pem"
 nonexistentFile $cert
