@@ -6,8 +6,8 @@
 
 usage(){
     echo "-h   输出此帮助信息。"
-    echo "-d   设置网站证书(cert.pem)及中间证书(chain.pem)所在目录。"
-    echo "-o   设置 OCSP 响应文件路径。如果不存在会自动创建。"
+    echo "-d   (必填)设置网站证书(cert.pem)及中间证书(chain.pem)所在目录。"
+    echo "-o   (必填)设置 OCSP 响应文件路径。如果不存在会自动创建。"
     echo "-t   设置访问 OCSP 服务器的最大重试次数。"
     echo "-v   输出详细信息。"
 }
@@ -128,7 +128,7 @@ do
             echo "新响应内容无变化："
             echo "$ocsp_resp"
             fi
-            exit 1
+            exit
         fi
     fi
     let "retry++"
